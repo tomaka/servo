@@ -1898,7 +1898,8 @@ dependencies = [
 [[package]]
 name = "gaol"
 version = "0.2.1"
-source = "git+https://github.com/tomaka/gaol?branch=hacky-wasi#ea6615df6f395a8bcf536ed0042db672c8c31d8b"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "061957ca7a966a39a79ebca393a9a6c7babda10bf9dd6f11d00041558d929c22"
 dependencies = [
  "libc",
  "log",

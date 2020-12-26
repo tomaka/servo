@@ -77,7 +77,8 @@ use compositing::{CompositingReason, ConstellationMsg, IOCompositor, ShutdownSta
     not(target_os = "ios"),
     not(target_os = "android"),
     not(target_arch = "arm"),
-    not(target_arch = "aarch64")
+    not(target_arch = "aarch64"),
+    not(target_arch = "wasm32")
 ))]
 use constellation::content_process_sandbox_profile;
 use constellation::{Constellation, InitialConstellationState, UnprivilegedContent};
@@ -91,7 +92,8 @@ use euclid::{Scale, Size2D};
     not(target_os = "ios"),
     not(target_os = "android"),
     not(target_arch = "arm"),
-    not(target_arch = "aarch64")
+    not(target_arch = "aarch64"),
+    not(target_arch = "wasm32")
 ))]
 use gaol::sandbox::{ChildSandbox, ChildSandboxMethods};
 use gfx::font_cache_thread::FontCacheThread;
@@ -1063,7 +1065,8 @@ pub fn run_content_process(token: String) {
     not(target_os = "ios"),
     not(target_os = "android"),
     not(target_arch = "arm"),
-    not(target_arch = "aarch64")
+    not(target_arch = "aarch64"),
+    not(target_arch = "wasm32")
 ))]
 fn create_sandbox() {
     ChildSandbox::new(content_process_sandbox_profile())
@@ -1076,10 +1079,11 @@ fn create_sandbox() {
     target_os = "ios",
     target_os = "android",
     target_arch = "arm",
-    target_arch = "aarch64"
+    target_arch = "aarch64",
+    target_arch = "wasm32"
 ))]
 fn create_sandbox() {
-    panic!("Sandboxing is not supported on Windows, iOS, ARM targets and android.");
+    panic!("Sandboxing is not supported on Windows, iOS, ARM targets, Android and Wasm.");
 }
 
 enum UserAgent {

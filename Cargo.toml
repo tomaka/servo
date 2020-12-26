@@ -26,7 +26,6 @@ opt-level = 3
 #     [patch."https://github.com/servo/<repository>"]
 #     <crate> = { path = "/path/to/local/checkout" }
 
-gaol = { git = "https://github.com/tomaka/gaol", branch = "hacky-wasi" }
 harfbuzz-sys = { git = "https://github.com/tomaka/rust-harfbuzz", branch = "wasi-hack" }
 freetype-sys = { git = "https://github.com/tomaka/freetype-sys", branch = "wasi-hack" }
 ipc-channel = { git = "https://github.com/tomaka/ipc-channel", branch = "wasi" }   # TODO: remove after https://github.com/servo/ipc-channel/pull/270

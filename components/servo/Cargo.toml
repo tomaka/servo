@@ -88,7 +88,7 @@ webrender_traits = { path = "../webrender_traits" }
 webxr = { git = "https://github.com/servo/webxr" }
 webxr-api = { git = "https://github.com/servo/webxr" }
 
-[target.'cfg(all(not(target_os = "windows"), not(target_os = "ios"), not(target_os = "android"), not(target_arch = "arm"), not(target_arch = "aarch64")))'.dependencies]
+[target.'cfg(all(not(target_os = "windows"), not(target_os = "ios"), not(target_os = "android"), not(target_arch = "arm"), not(target_arch = "aarch64"), not(target_arch = "wasm32")))'.dependencies]
 gaol = "0.2.1"
 
 [target.'cfg(target_os = "windows")'.dependencies]
