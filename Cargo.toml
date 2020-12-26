@@ -26,8 +26,20 @@ opt-level = 3
 #     [patch."https://github.com/servo/<repository>"]
 #     <crate> = { path = "/path/to/local/checkout" }
 
+gaol = { git = "https://github.com/tomaka/gaol", branch = "hacky-wasi" }
+harfbuzz-sys = { git = "https://github.com/tomaka/rust-harfbuzz", branch = "wasi-hack" }
+freetype-sys = { git = "https://github.com/tomaka/freetype-sys", branch = "wasi-hack" }
+ipc-channel = { git = "https://github.com/tomaka/ipc-channel", branch = "wasi" }   # TODO: remove after https://github.com/servo/ipc-channel/pull/270
+libz-sys = { git = "https://github.com/tomaka/libz-sys", branch = "wasi-build" }   # TODO: remove after https://github.com/rust-lang/libz-sys/pull/73
 # This is here to dedupe winapi since mio 0.6 is still using winapi 0.2.
-mio = { git = "https://github.com/servo/mio.git", branch = "servo-mio-0.6.22" }
+mio = { git = "https://github.com/tomaka/mio", branch = "0.6-wasi" }
+net2 = { git = "https://github.com/tomaka/net2-rs", branch = "wasi-build" }   # TODO: remove after https://github.com/deprecrated/net2-rs/pull/111
+openssl-src = { path = "../openssl-src-rs" } #  { git = "https://github.com/tomaka/openssl-src-rs", branch = "wasi" }   # TODO: remove after https://github.com/alexcrichton/openssl-src-rs/pull/81
+surfman = { git = "https://github.com/tomaka/surfman", branch = "hacky-wasi" }
+tokio = { git = "https://github.com/tomaka/tokio", branch = "v0.1-wasi" }
+tokio2 = { package = "tokio", git = "https://github.com/tomaka/tokio", branch = "v0.2-wasi" }
+uuid = { git = "https://github.com/uuid-rs/uuid", rev = "26402706280ab8356666cceaa6e110f661aea0a1" }   # TODO: waiting for publish
+winit = { git = "https://github.com/tomaka/winit", branch = "0.19.3-hacky-wasi" }
 
 [patch."https://github.com/jrmuizel/raqote"]
 raqote = { git = "https://github.com/jdm/raqote", branch = "fkup" }
@@ -36,3 +48,8 @@ raqote = { git = "https://github.com/jdm/raqote", branch = "fkup" }
 [patch."https://github.com/servo/webrender"]
 webrender = { git = "https://github.com/jdm/webrender", branch = "crash-backtrace" }
 webrender_api = { git = "https://github.com/jdm/webrender", branch = "crash-backtrace" }
+
+
+
+# TODO: command to compile
+# AR_wasm32_wasi=/home/pierre/Projets/wasi-sdk-12.0/bin/ar CC_wasm32_wasi=/home/pierre/Projets/wasi-sdk-12.0/bin/clang CFLAGS_wasm32_wasi="-fno-threadsafe-statics --sysroot=/home/pierre/Projets/wasi-sdk-12.0/share/wasi-sysroot -D_WASI_EMULATED_SIGNAL" CXX_wasm32_wasi=/home/pierre/Projets/wasi-sdk-12.0/bin/clang++ CXXFLAGS_wasm32_wasi="-fno-threadsafe-statics --sysroot=/home/pierre/Projets/wasi-sdk-12.0/share/wasi-sysroot -D_WASI_EMULATED_SIGNAL" CXXSTDLIB_wasm32_wasi=c++ CARGO_TARGET_WASM32_WASI_RUSTFLAGS="-Clink-arg=-L/home/pierre/Projets/wasi-sdk-12.0/share/wasi-sysroot/lib/wasm32-wasi -Clink-arg=-lwasi-emulated-signal" cargo build --target=wasm32-wasi --features layout-2020

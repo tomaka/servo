@@ -25,7 +25,7 @@ const MIN_ALIGN: usize = 16;
 
 pub use self::platform::{alloc, dealloc, realloc};
 
-#[cfg(any(unix, target_os = "redox"))]
+#[cfg(any(unix, target_os = "redox", target_os = "wasi"))]
 mod platform {
     extern crate libc;
 

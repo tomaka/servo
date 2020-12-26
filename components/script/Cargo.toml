@@ -120,5 +120,5 @@ webrender_api = { git = "https://github.com/servo/webrender" }
 webxr-api = { git = "https://github.com/servo/webxr", features = ["ipc"] }
 xml5ever = "0.16"
 
-[target.'cfg(not(target_os = "ios"))'.dependencies]
+[target.'cfg(not(any(target_os = "ios", target_os = "wasi")))'.dependencies]
 mozangle = "0.2"

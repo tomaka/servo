@@ -9,7 +9,7 @@ publish = false
 [lib]
 path = "lib.rs"
 
-[target.'cfg(not(windows))'.dependencies]
+[target.'cfg(not(any(windows, target_os = "wasi")))'.dependencies]
 jemalloc-sys = { version = "0.3.2" }
 
 [target.'cfg(windows)'.dependencies]

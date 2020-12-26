@@ -9,10 +9,10 @@ static ALLOC: Allocator = Allocator;
 
 pub use crate::platform::*;
 
-#[cfg(not(windows))]
+#[cfg(not(any(windows, target_os = "wasi")))]
 pub use jemalloc_sys;
 
-#[cfg(not(windows))]
+#[cfg(not(any(windows, target_os = "wasi")))]
 mod platform {
     use jemalloc_sys as ffi;
     use std::alloc::{GlobalAlloc, Layout};
@@ -111,5 +111,16 @@ mod platform {
         }
 
         HeapSize(heap, 0, ptr) as usize
+    }
+}
+
+#[cfg(target_os = "wasi")]
+mod platform {
+    pub use std::alloc::System as Allocator;
+    use std::os::raw::c_void;
+
+    /// Get the size of a heap block.
+    pub unsafe extern "C" fn usable_size(_: *const c_void) -> usize {
+        unimplemented!()
     }
 }
