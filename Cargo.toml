@@ -34,7 +34,7 @@ libz-sys = { git = "https://github.com/tomaka/libz-sys", branch = "wasi-build" }
 # This is here to dedupe winapi since mio 0.6 is still using winapi 0.2.
 mio = { git = "https://github.com/tomaka/mio", branch = "0.6-wasi" }
 net2 = { git = "https://github.com/tomaka/net2-rs", branch = "wasi-build" }   # TODO: remove after https://github.com/deprecrated/net2-rs/pull/111
-openssl-src = { path = "../openssl-src-rs" } #  { git = "https://github.com/tomaka/openssl-src-rs", branch = "wasi" }   # TODO: remove after https://github.com/alexcrichton/openssl-src-rs/pull/81
+openssl-src = { git = "https://github.com/tomaka/openssl-src-rs", branch = "wasi-hack" }
 surfman = { git = "https://github.com/tomaka/surfman", branch = "hacky-wasi" }
 tokio = { git = "https://github.com/tomaka/tokio", branch = "v0.1-wasi" }
 tokio2 = { package = "tokio", git = "https://github.com/tomaka/tokio", branch = "v0.2-wasi" }
@@ -52,4 +52,4 @@ webrender_api = { git = "https://github.com/jdm/webrender", branch = "crash-back
 
 
 # TODO: command to compile
-# AR_wasm32_wasi=/home/pierre/Projets/wasi-sdk-12.0/bin/ar CC_wasm32_wasi=/home/pierre/Projets/wasi-sdk-12.0/bin/clang CFLAGS_wasm32_wasi="-fno-threadsafe-statics --sysroot=/home/pierre/Projets/wasi-sdk-12.0/share/wasi-sysroot -D_WASI_EMULATED_SIGNAL" CXX_wasm32_wasi=/home/pierre/Projets/wasi-sdk-12.0/bin/clang++ CXXFLAGS_wasm32_wasi="-fno-threadsafe-statics --sysroot=/home/pierre/Projets/wasi-sdk-12.0/share/wasi-sysroot -D_WASI_EMULATED_SIGNAL" CXXSTDLIB_wasm32_wasi=c++ CARGO_TARGET_WASM32_WASI_RUSTFLAGS="-Clink-arg=-L/home/pierre/Projets/wasi-sdk-12.0/share/wasi-sysroot/lib/wasm32-wasi -Clink-arg=-lwasi-emulated-signal" cargo build --target=wasm32-wasi --features layout-2020
+# AR_wasm32_wasi=/home/pierre/Projets/wasi-sdk-12.0/bin/ar CC_wasm32_wasi=/home/pierre/Projets/wasi-sdk-12.0/bin/clang CFLAGS_wasm32_wasi="-fno-threadsafe-statics --sysroot=/home/pierre/Projets/wasi-sdk-12.0/share/wasi-sysroot -D_WASI_EMULATED_SIGNAL -D_WASI_EMULATED_MMAN" CXX_wasm32_wasi=/home/pierre/Projets/wasi-sdk-12.0/bin/clang++ CXXFLAGS_wasm32_wasi="-fno-threadsafe-statics --sysroot=/home/pierre/Projets/wasi-sdk-12.0/share/wasi-sysroot -D_WASI_EMULATED_SIGNAL -D_WASI_EMULATED_MMAN" CXXSTDLIB_wasm32_wasi=c++ CARGO_TARGET_WASM32_WASI_RUSTFLAGS="-Clink-arg=-L/home/pierre/Projets/wasi-sdk-12.0/share/wasi-sysroot/lib/wasm32-wasi -Clink-arg=-lwasi-emulated-signal -lwasi-emulated-mman" cargo build --target=wasm32-wasi --features layout-2020
